@@ -1,0 +1,53 @@
+.google-auth{
+    height: 40px;
+    width: 100%;
+     
+    position: relative;
+    color: white;
+    margin-top: 20px;
+    background-color: #1da1f2;
+    height: 40px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-weight: 900;
+    transition: 0.5s;
+
+}
+.google-auth img {
+    position: absolute;
+    left: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+.google-auth p{
+    margin-left: 10px;
+   
+}
+
+  
+  .horizontal-divider {
+    margin: 20px 0;
+    display: flex;
+    align-items: center;
+  }
+  
+  .horizontal-divider p {
+    margin: 0 10px 2px 10px;
+    color: #1e90c2;
+  }
+  
+  .line-right,
+  .line-left {
+    height: 1px;
+    width: 145px;
+  }
+  
+  .line-left {
+    background: #1da1f2;
+    background: linear-gradient(90deg, #1da1f2 0%, #1da1f2 100%);
+  }
+  
+  .line-right {
+    background: #1da1f2;
+    background: linear-gradient(90deg, #1da1f2 0%, #1da1f2 100%);
+  }
