@@ -101,3 +101,12 @@
  color: red;
  margin: 10px;
 }
+
+.title{
+    color: #1e90c2;
+}
+.backgroundColor{
+    background-color: #1da1f2;
+    border-radius: 50px 0;
+    font-weight: 700;
+}
