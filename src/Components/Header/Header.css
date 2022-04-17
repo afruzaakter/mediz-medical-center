@@ -20,3 +20,15 @@
     padding: 0px 10px;
     border-radius: 10px 0;
 }
+
+.signout{
+    text-decoration: none;
+    margin-left: 15px;
+    font-size: 20px;
+    transition: color ease-in-out 300ms;
+    color: white;
+    background-color: #1da1f2;
+    padding: 0px 10px;
+    border-radius: 10px 0;
+    border: none;
+}
