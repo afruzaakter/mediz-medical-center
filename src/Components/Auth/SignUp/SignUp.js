@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import auth from '../../../firebase.init';
 import Social from '../Social/Social';
-import { useCreateUserWithEmailAndPassword } from 'react-firebase-hooks/auth';
+import { useCreateUserWithEmailAndPassword} from 'react-firebase-hooks/auth';
 const SignUp = () => {
     const [userInfo, setUserInfo] = useState({
         email: "",
@@ -16,7 +16,7 @@ const SignUp = () => {
         general: "",
     });
 
-    //React Firebase hook
+    //React Firebase Email and Password hook
     const [
       createUserWithEmailAndPassword,
       user,
@@ -67,8 +67,9 @@ const SignUp = () => {
     // Submit data
   const handleSignUp = (e) =>{
       e.preventDefault();
-      // console.log(userInfo);
+      console.log(userInfo);
       createUserWithEmailAndPassword(userInfo.email, userInfo.password);
+      
   }
     return (
         <div className='login-container'>
@@ -83,7 +84,7 @@ const SignUp = () => {
 
            <input onChange={handleConfirmPasswordChange} type="password" placeholder='Confirm Password' />
       
-           <button>Submit</button>
+           <button>Sign Up</button>
        </form>
 
  
