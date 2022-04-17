@@ -1,10 +1,11 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import GoogleLogo from '../../../images/social/google.png';
 import facebook from '../../../images/social/facebook (1).png';
 import gitHub from '../../../images/social/github.png';
 import './Social.css';
 import auth from '../../../firebase.init';
 import { useSignInWithGoogle } from 'react-firebase-hooks/auth';
+import { useLocation, useNavigate } from 'react-router-dom';
 const Social = () => {
 
     const [userInfo, setUserInfo] = useState({
@@ -12,6 +13,16 @@ const Social = () => {
         password:"",
         confirmPassword: "",
     });
+    //Navigate part
+    const navigate = useNavigate();
+    const location = useLocation();
+    const from = location.state?.from?.pathname || "/";
+
+    useEffect(() => {
+      if (user) {
+          navigate(from);
+      }
+  }, []);
     //React Firebase Google 
   const [
     signInWithGoogle, user, loading, error

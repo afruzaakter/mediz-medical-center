@@ -33,6 +33,7 @@ const Login = () => {
             navigate(from);
         }
     }, [user]);
+
     //Email Validation part
 
     const handleEmailChange = (e) => {

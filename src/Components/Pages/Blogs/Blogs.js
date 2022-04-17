@@ -31,7 +31,7 @@ const Blogs = () => {
                      </p>
                         </Accordion.Body>
                     </Accordion.Item>
-                    <Accordion.Item eventKey="1">
+                    <Accordion.Item eventKey="2">
                         <Accordion.Header>Question-3:What other services does firebase provide other than authentication</Accordion.Header>
                         <Accordion.Body>
                             <p className='title'>There are many services which Firebase provides, Most useful of them are:
@@ -54,3 +54,5 @@ const Blogs = () => {
 };
 
 export default Blogs;
+
+
