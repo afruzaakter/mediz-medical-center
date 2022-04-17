@@ -7,20 +7,27 @@ const Login = () => {
     const [userInfo, setUserInfo] = useState({
         email: "",
         password: "",
-    })
-
+    });
+    //error handle
+     const [error, setError]=useState({
+         email: "",
+         password: "",
+         general: "",
+     })
     //Email Validation part
     const handleEmailChange = (e) => {
-
+       setUserInfo(e.target.value);
+       
     }
     //Password Validation Part
     const handlePasswordChange = (e) => {
-
+        setUserInfo(e.target.value);
     }
-
+    
     // Submit data
     const handleLogin = (e) => {
-        e.preventDefault()
+        e.preventDefault();
+
     }
 
     return (

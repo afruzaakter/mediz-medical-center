@@ -1,30 +1,74 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import auth from '../../../firebase.init';
 import Social from '../Social/Social';
-
+import { useCreateUserWithEmailAndPassword } from 'react-firebase-hooks/auth';
 const SignUp = () => {
     const [userInfo, setUserInfo] = useState({
         email: "",
         password:"",
-    })
+        confirmPassword: "",
+    });
+    //error handle part
+    const [error, setError] = useState({
+        email: "",
+        password: "",
+        general: "",
+    });
 
+    //React Firebase hook
+    const [
+      createUserWithEmailAndPassword,
+      user,
+      loading,
+      hookerror,
+    ] = useCreateUserWithEmailAndPassword(auth);
+  
   //Email Validation part
     const handleEmailChange = (e) =>{
-
+      const emailRegex = /\S+@\S+\.\S+/;
+      const validEmail = emailRegex.test(e.target.value);
+      // console.log(validEmail);
+      if(validEmail){
+        setUserInfo({...userInfo, email: e.target.value});
+        setError({...error, email: " "});
+      }
+      else{
+         setError({...error, email: "❌ Invalid Email"});
+         setUserInfo({...userInfo, email: " "});
+      }
     }
     //Password Validation Part
     const handlePasswordChange = (e) =>{
+      const passwordRegex = /.{6,}/;
+      const validPassword = passwordRegex.test(e.target.value);
 
+      if (validPassword) {
+          setUserInfo({ ...userInfo, password: e.target.value });
+          setError({ ...error, password: "" });
+      } else {
+          setError({ ...error, password: "❌ Minimum 6 characters!" });
+          setUserInfo({ ...userInfo, password: "" });
+      }
     }
     //Password Validation Part
     const handleConfirmPasswordChange = (e) =>{
-    
+     if(e.target.value === userInfo.password){
+       setUserInfo({...userInfo, confirmPassword: e.target.value});
+       setError({...error, password: " "});
+     }
+     else{
+       setError({...error, password: "❌ Password's don't match"});
+       setUserInfo({...userInfo, confirmPassword: " "});
+     }
     }
 
 
     // Submit data
   const handleSignUp = (e) =>{
-      e.preventDefault()
+      e.preventDefault();
+      // console.log(userInfo);
+      createUserWithEmailAndPassword(userInfo.email, userInfo.password);
   }
     return (
         <div className='login-container'>
@@ -32,14 +76,14 @@ const SignUp = () => {
        <form className='login-form' onSubmit={handleSignUp }>
            <input onChange={handleEmailChange} type="email"  placeholder='Your Email'/>
 
-           {/* {errors?.email && <p className='text-danger'>{errors.email}</p>} */}
+           {error?.email && <p className='error-massege'>{error.email}</p>}
            
            <input onChange={handlePasswordChange} type="password" placeholder='Password' />
-           {/* {errors?.password && <p className='text-danger'>{errors.password}</p>} */}
+           {error?.password && <p className='error-massege'>{error.password}</p>}
 
-           <input onChange={handleConfirmPasswordChange} type="password" placeholder='Password' />
+           <input onChange={handleConfirmPasswordChange} type="password" placeholder='Confirm Password' />
       
-           <button>Login</button>
+           <button>Submit</button>
        </form>
 
  
