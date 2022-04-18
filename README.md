@@ -19,7 +19,7 @@ Use Frameworks:\
 ### `npm start`
 
 Runs the app in the development mode.\
-Live Link: [https://mediz-medical-center.web.app/](http://localhost:3000) to view it in your browser.
+Live Link: [https://mediz-medical-center.web.app/](https://mediz-medical-center.web.app/) to view it in your browser.
 
 The page will reload when you make changes.\
 You may also see any lint errors in the console.
