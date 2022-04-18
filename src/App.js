@@ -13,6 +13,7 @@ import NotFound from './Components/NotFound/NotFound';
 import Blogs from './Components/Pages/Blogs/Blogs';
 import Footer from './Components/Footer/Footer';
 import Services from './Components/Services/Services';
+import About from './Components/About/About';
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
         <Route path='/login' element={<Login></Login>}></Route>
         <Route path='/signup' element={<SignUp></SignUp>}></Route>
         <Route path='/blogs' element={<Blogs></Blogs>}></Route>
+        <Route path='/about' element={<About></About>}></Route>
         <Route path='/services' element={<Services></Services>}></Route>
 
 

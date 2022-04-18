@@ -1,10 +1,20 @@
-# Getting Started with Create React App
+# Mediz Medical Center
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+## Project Description:
 
-In the project directory, you can run:
+. At first work react project create and components create.\
+. React Router install, firebase install and code setup.\
+. React fontawesome , react bootstrap, rechart install, and setup.\
+. app.js Router setup, Header design, Home page design, blogs page,Customer Review page , design  etc.\
+.Firebase hook install, Hosting etc.\
+.Login and SignUp page Email-Password, Google etc Authentication.\
+
+Use Frameworks:\
+.Bootstrap\
+.React\
+.React Firebase Hook\
 
 ### `npm start`
 
