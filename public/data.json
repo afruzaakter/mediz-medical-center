@@ -19,5 +19,26 @@
       "price": 1000,
       "img": "https://i.ibb.co/brVcDJG/icon-3.png",
       "description": "Orthopaedic surgeons are devoted to the prevention, diagnosis, and treatment of disorders of the bones, joints, ligaments, tendons and muscles.sing."
+    },
+    {
+      "id": 1004,
+      "name": "Lung Diseases",
+      "price": 500,
+      "img": "https://i.ibb.co/vjBCWxD/icon-1.png",
+      "description": " UnityPoint Health pulmonologist, Jim Meyer, DO, tells us the top eight respiratory system illnesses. Asthma, COPO, Cystic Fibrosis, Lung Cancer , Tuberculosis, Bronchitis, Pneumonia, Emphysema"
+    },
+    {
+      "id": 1005,
+      "name": "Heart Diseases",
+      "price": 700,
+      "img": "https://i.ibb.co/9TXT97b/icon-2.png",
+      "description": "Specialize in Heart Diseases and Condition in Children and Neonates, Call Us! Ultrasound Scans. Make Appointments. Services: Ultrasound Scans, Diagnostic Cardiac Catheteristation."
+    },
+    {
+      "id": 1006,
+      "name": "Orthopaedic",
+      "price": 1000,
+      "img": "https://i.ibb.co/brVcDJG/icon-3.png",
+      "description": "Orthopaedic surgeons are devoted to the prevention, diagnosis, and treatment of disorders of the bones, joints, ligaments, tendons and muscles.sing."
     }
   ]

@@ -1,5 +1,7 @@
-import React, { useEffect, useState } from 'react';
-import { useSignInWithEmailAndPassword } from 'react-firebase-hooks/auth';
+
+import React, { useEffect, useRef, useState } from 'react';
+import { Button } from 'react-bootstrap';
+import { useSendPasswordResetEmail, useSignInWithEmailAndPassword } from 'react-firebase-hooks/auth';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
 import "react-toastify/dist/ReactToastify.css";
@@ -13,29 +15,34 @@ const Login = () => {
         password: "",
     });
     //error handle
-     const [error, setError]=useState({
-         email: "",
-         password: "",
-         general: "",
-     })
-
-     const [
+    const [error, setError] = useState({
+        email: "",
+        password: "",
+        general: "",
+    })
+    //  google signin firebase hook 
+    const [
         signInWithEmailAndPassword,
         user,
         loading,
         hookError,
-      ] = useSignInWithEmailAndPassword(auth);
-      //Navigate part
-      const navigate = useNavigate();
-      const location = useLocation();
-      const from = location.state?.from?.pathname || "/";
+    ] = useSignInWithEmailAndPassword(auth);
+    //Navigate part
+    const navigate = useNavigate();
+    const location = useLocation();
+    const from = location.state?.from?.pathname || "/";
 
+    // reset password firebase hook 
+    const emailRef = useRef('');
+    const passwordRef = useRef('')
+    const [sendPasswordResetEmail, sending, resetError] = useSendPasswordResetEmail(
+        auth
+    );
 
-
-      useEffect(() => {
+    useEffect(() => {
         if (user) {
             // navigate(from);
-            navigate(from, {replace: true});
+            navigate(from, { replace: true });
         }
     }, [user]);
 
@@ -45,22 +52,22 @@ const Login = () => {
         const emailRegex = /\S+@\S+\.\S+/;
         const validEmail = emailRegex.test(e.target.value);
         // console.log(validEmail);
-        if(validEmail){
-          setUserInfo({...userInfo, email: e.target.value});
-          setError({...error, email: " "});
+        if (validEmail) {
+            setUserInfo({ ...userInfo, email: e.target.value });
+            setError({ ...error, email: " " });
         }
-        else{
-           setError({...error, email: "❌ Invalid Email"});
-           setUserInfo({...userInfo, email: " "});
+        else {
+            setError({ ...error, email: "❌ Invalid Email" });
+            setUserInfo({ ...userInfo, email: " " });
         }
-      
-       
+
+
     }
     //Password Validation Part
     const handlePasswordChange = (e) => {
         const passwordRegex = /.{6,}/;
         const validPassword = passwordRegex.test(e.target.value);
-  
+
         if (validPassword) {
             setUserInfo({ ...userInfo, password: e.target.value });
             setError({ ...error, password: "" });
@@ -69,26 +76,26 @@ const Login = () => {
             setUserInfo({ ...userInfo, password: "" });
         }
     }
-    
+
     // Submit data
     const handleLogin = (e) => {
         e.preventDefault();
-       signInWithEmailAndPassword(userInfo.email, userInfo.password);
+        signInWithEmailAndPassword(userInfo.email, userInfo.password);
 
     }
 
 
 
     // Error handle part 
-  
-       useEffect(() => {
+
+    useEffect(() => {
         const error = hookError;
-        if(error){
-            switch(error?.code){
+        if (error) {
+            switch (error?.code) {
                 case "auth/invalid-email":
                     toast("Invalid email provided, please provide a valid email");
                     break;
-                
+
                 case "auth/invalid-password":
                     toast("Wrong password. Intruder!!")
                     break;
@@ -97,6 +104,17 @@ const Login = () => {
             }
         }
     }, [hookError])
+
+    const resetPassword = async () => {
+        const email = emailRef.current.value;
+        if (email) {
+            await sendPasswordResetEmail(email);
+            toast('Sent email');
+        }
+        else {
+            toast('please enter your email address');
+        }
+    }
 
 
     return (
@@ -120,6 +138,11 @@ const Login = () => {
                 New to Mediz?{" "}
                 <Link to="/signup" className='redirect-span' >Create New Account</Link>
             </p>
+            <p >
+                Forget Password?{" "}
+                <Button onClick={resetPassword} className='btn btn-link text-light'>Reset Password</Button>
+            </p>
+            
             <Social></Social>
         </div>
     );
