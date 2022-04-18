@@ -3,6 +3,7 @@ import { Link, Navigate, useLocation, useNavigate } from 'react-router-dom';
 import auth from '../../../firebase.init';
 import Social from '../Social/Social';
 import { useCreateUserWithEmailAndPassword, useUpdateProfile} from 'react-firebase-hooks/auth';
+import Loading from '../../Loading/Loading';
 const SignUp = () => {
     const [userInfo, setUserInfo] = useState({
         email: "",
@@ -26,6 +27,11 @@ const SignUp = () => {
       loading,
       hookerror,
     ] = useCreateUserWithEmailAndPassword(auth,{sendEmailVerification: true});
+
+    // if(loading){
+    //   return<Loading></Loading>
+    // }
+
    //update profile name
    const [updateProfile, updating, errorUpdate] = useUpdateProfile(auth);
   //Email Validation part

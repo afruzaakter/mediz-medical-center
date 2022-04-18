@@ -14,7 +14,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 Use Frameworks:\
 .Bootstrap\
 .React\
-.React Firebase Hook\
+.React Firebase Hook etc.
 
 ### `npm start`
 

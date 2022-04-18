@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { useSignInWithEmailAndPassword } from 'react-firebase-hooks/auth';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { ToastContainer, toast } from 'react-toastify';
+import "react-toastify/dist/ReactToastify.css";
 import auth from '../../../firebase.init';
 import Social from '../Social/Social';
 import './Login.css'
@@ -21,12 +23,14 @@ const Login = () => {
         signInWithEmailAndPassword,
         user,
         loading,
-        hookerror,
+        hookError,
       ] = useSignInWithEmailAndPassword(auth);
       //Navigate part
       const navigate = useNavigate();
       const location = useLocation();
       const from = location.state?.from?.pathname || "/";
+
+
 
       useEffect(() => {
         if (user) {
@@ -70,7 +74,30 @@ const Login = () => {
     const handleLogin = (e) => {
         e.preventDefault();
        signInWithEmailAndPassword(userInfo.email, userInfo.password);
+
     }
+
+
+
+    // Error handle part 
+  
+       useEffect(() => {
+        const error = hookError;
+        if(error){
+            switch(error?.code){
+                case "auth/invalid-email":
+                    toast("Invalid email provided, please provide a valid email");
+                    break;
+                
+                case "auth/invalid-password":
+                    toast("Wrong password. Intruder!!")
+                    break;
+                default:
+                    toast("something went wrong")
+            }
+        }
+    }, [hookError])
+
 
     return (
         <div className='login-container'>
@@ -85,7 +112,7 @@ const Login = () => {
                 <button>Login</button>
             </form>
 
-
+            <ToastContainer />
 
             {/* {hookError && <p className='text-danger'>{hookError?.message}</p>} */}
 
