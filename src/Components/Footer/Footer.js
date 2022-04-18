@@ -5,8 +5,8 @@ const Footer = () => {
     const year = today.getFullYear();
     return (
 
-        <footer className='bg-secondary  footer-design '>
-            <p className='text-center text-light m-3'><small > © {year} copyright: mediz.com </small></p>
+        <footer className=' p-2'>
+            <p className='text-center text-secondary m-3'><small > © {year} copyright: mediz.com </small></p>
         </footer>
     );
 };

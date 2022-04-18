@@ -6,7 +6,7 @@ import '../Home/Home.css';
 const Banner = () => {
   return (
     <div className='container m-5 p-5'>
-      <div className='d-flex justify-content-around align-items-center'>
+      <div className='d-flex justify-content-around align-items-center banner-section'>
         <div className=' w-50'>
           <img className='w-75' src={banner} alt="" />
         </div>
