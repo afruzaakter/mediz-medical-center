@@ -30,7 +30,7 @@ function App() {
         <Route path='/services' element={<Services></Services>}></Route>
 
 
-        <Route path='/checkout' element={
+        <Route path='checkout' element={
           <RequireAuth>
             <Checkout></Checkout>
           </RequireAuth>

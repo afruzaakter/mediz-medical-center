@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Navigate, useLocation, useNavigate } from 'react-router-dom';
 import auth from '../../../firebase.init';
 import Social from '../Social/Social';
-import { useCreateUserWithEmailAndPassword} from 'react-firebase-hooks/auth';
+import { useCreateUserWithEmailAndPassword, useUpdateProfile} from 'react-firebase-hooks/auth';
 const SignUp = () => {
     const [userInfo, setUserInfo] = useState({
         email: "",
@@ -16,14 +16,18 @@ const SignUp = () => {
         general: "",
     });
 
+    const navigate = useNavigate();
+    const location = useLocation();
+    const from = location.state?.from?.pathname || "/";
     //React Firebase Email and Password hook
     const [
       createUserWithEmailAndPassword,
       user,
       loading,
       hookerror,
-    ] = useCreateUserWithEmailAndPassword(auth);
-  
+    ] = useCreateUserWithEmailAndPassword(auth,{sendEmailVerification: true});
+   //update profile name
+   const [updateProfile, updating, errorUpdate] = useUpdateProfile(auth);
   //Email Validation part
     const handleEmailChange = (e) =>{
       const emailRegex = /\S+@\S+\.\S+/;
@@ -65,10 +69,14 @@ const SignUp = () => {
 
 
     // Submit data
-  const handleSignUp = (e) =>{
+  const handleSignUp = async(e) =>{
       e.preventDefault();
-      console.log(userInfo);
-      createUserWithEmailAndPassword(userInfo.email, userInfo.password);
+      // console.log(userInfo);
+      const displayName = e.target.name.value;
+     await createUserWithEmailAndPassword(userInfo.email, userInfo.password);
+     await updateProfile({ displayName });
+     console.log('Updated profile');
+     navigate('/home');
       
   }
     return (
