@@ -6,6 +6,7 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
 import "react-toastify/dist/ReactToastify.css";
 import auth from '../../../firebase.init';
+import Loading from '../../Loading/Loading';
 import Social from '../Social/Social';
 import './Login.css'
 
@@ -27,7 +28,11 @@ const Login = () => {
         loading,
         hookError,
     ] = useSignInWithEmailAndPassword(auth);
+
+    
+  
     //Navigate part
+
     const navigate = useNavigate();
     const location = useLocation();
     const from = location.state?.from?.pathname || "/";
@@ -138,9 +143,9 @@ const Login = () => {
                 New to Mediz?{" "}
                 <Link to="/signup" className='redirect-span' >Create New Account</Link>
             </p>
-            <p >
-                Forget Password?{" "}
-                <Button onClick={resetPassword} className='btn btn-link text-light'>Reset Password</Button>
+            <p className='d-flex ps-2' >
+                <span className='d-flex justify-content-center align-items-center '>Forget Password?{" "}</span>
+                <Button onClick={resetPassword} className=' text-light pe-auto text-decoration-none w-50'>Reset Password </Button>
             </p>
             
             <Social></Social>

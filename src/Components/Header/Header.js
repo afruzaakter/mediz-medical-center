@@ -10,7 +10,7 @@ import { useAuthState } from 'react-firebase-hooks/auth';
 const Header = () => {
     const [user] = useAuthState(auth);
     const handleSignOut = () => {
-      signOut(auth);
+        signOut(auth);
     }
 
     return (
@@ -29,13 +29,13 @@ const Header = () => {
                             <NavLink className={({ isActive }) => (isActive ? "active-link" : "header")} to="/Home">HOME</NavLink>
                             <NavLink className={({ isActive }) => (isActive ? "active-link" : "header")} to="/services">SERVICES</NavLink>
                             {/* <Nav.Link  href="home#services">Services</Nav.Link> */}
-                            
+
                             <NavLink className={({ isActive }) => (isActive ? "active-link" : "header")} to="/blogs">BLOGS</NavLink>
                             <NavLink className={({ isActive }) => (isActive ? "active-link" : "header")} to="/about">ABOUT</NavLink>
-                            { 
-                             user?
-                             <button className='signout ms-2 ' onClick={handleSignOut}>Sign Out</button>:
-                                <NavLink className={({ isActive }) => (isActive ? "active-link" : "header")} to="/login" >LOGIN</NavLink>
+                            {
+                                user ?
+                                    <button className='signout ms-2 ' onClick={handleSignOut}>Sign Out</button> :
+                                    <NavLink className={({ isActive }) => (isActive ? "active-link" : "header")} to="/login" >LOGIN</NavLink>
                             }
 
                         </Nav>

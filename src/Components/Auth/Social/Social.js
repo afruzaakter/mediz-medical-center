@@ -7,15 +7,15 @@ import auth from '../../../firebase.init';
 import { useSignInWithGoogle } from 'react-firebase-hooks/auth';
 import { useNavigate } from 'react-router-dom';
 const Social = () => {
- //React Firebase Google 
- const [
-    signInWithGoogle, user, loading, error
-  ] = useSignInWithGoogle(auth);
+    //React Firebase Google 
+    const [
+        signInWithGoogle, user, loading, error
+    ] = useSignInWithGoogle(auth);
 
-  
+
     //Navigate part
     const navigate = useNavigate();
-    if(user){
+    if (user) {
         navigate('/home');
     }
 
@@ -34,7 +34,7 @@ const Social = () => {
                     <span className='ms-3'> Continue with Google</span>
                 </button>
             </div>
-            
+
             <div className="input-wrapper">
                 <button className="google-auth ms-2">
                     <img className='me-2' src={gitHub} alt="" />
